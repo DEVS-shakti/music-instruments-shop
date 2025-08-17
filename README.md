@@ -2,6 +2,8 @@
 
 A React-based web application for New Nirmal Musicals, designed to showcase musical instruments, products, and services.
 
+## PROJECT PREVIEW 
+ ``` musicinstrumentshop.netlify.app ```
 ## Features
 
 - Browse musical instruments and accessories
