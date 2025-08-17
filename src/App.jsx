@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import Catalogue from "./pages/Catalogue";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Signup from "./pages/SignUp";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./utils/ProtectedRoutes";
