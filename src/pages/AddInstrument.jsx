@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 
 // Component for adding/editing an instrument
-const AddInstrument = ({ editId, onUpdated, onCancelEdit }) => {
+const AddInstrument = ({ editId, onUpdated, onCancelEdit, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     price: '',
@@ -83,7 +83,8 @@ const AddInstrument = ({ editId, onUpdated, onCancelEdit }) => {
       }
       setFormData({ name: '', price: '', desc: '', image: '' }); // Clear form after successful submission
       onUpdated(); // Trigger refresh in parent component
-      if (editId) onCancelEdit(); // Close edit mode after update
+      if (onClose) onClose();
+      if (editId && onCancelEdit) onCancelEdit();
     } catch (error) {
       console.error("Error saving instrument:", error);
       setStatus("Something went wrong. Please try again.");
@@ -170,7 +171,10 @@ const AddInstrument = ({ editId, onUpdated, onCancelEdit }) => {
           {editId && (
             <button
               type="button"
-              onClick={onCancelEdit}
+          onClick={() => {
+            if (onCancelEdit) onCancelEdit();
+            if (onClose) onClose();
+          }}
               className="px-6 py-3 bg-gray-300 text-gray-800 rounded-lg font-semibold text-lg shadow-md hover:bg-gray-400 transition-all duration-300 transform hover:scale-105"
               disabled={loading}
             >

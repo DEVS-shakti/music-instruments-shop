@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; // Import motion for animations
-import { Phone, MapPin, MessageSquare, Home as HomeIcon, BookOpen, Mail } from 'lucide-react'; // Import Lucide icons
+import { MapPin, Info, Home as HomeIcon, BookOpen, Mail } from 'lucide-react'; // Import Lucide icons
 
 const Footer = () => {
   // Animation variants for the main container
@@ -75,21 +75,19 @@ const Footer = () => {
 
         {/* Contact */}
         <motion.div variants={sectionVariants}>
-          <h4 className="text-xl font-semibold mb-4 text-green-300">Contact Us</h4>
+          <h4 className="text-xl font-semibold mb-4 text-green-300">Contact</h4>
           <p className="text-sm text-gray-300 flex items-center justify-center md:justify-start mb-2">
-            <Phone size={16} className="mr-2 text-blue-400" /> 📞 +91 8102467065
+            <MapPin size={16} className="mr-2 text-red-400" /> Hazaribagh, Jharkhand, India
           </p>
-          <p className="text-sm text-gray-300 flex items-center justify-center md:justify-start mb-4">
-            <MapPin size={16} className="mr-2 text-red-400" /> 📍 Hazaribagh, Jharkhand, India
-          </p>
-          <a
-            href="https://wa.me/918102467065" // Corrected WhatsApp number
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center bg-green-600 text-white px-5 py-2.5 rounded-full shadow-md hover:bg-green-700 transition-all duration-300 transform hover:scale-105 font-semibold group"
+          <Link
+            to="/contact"
+            className="inline-flex items-center rounded-full border border-white/20 px-5 py-2.5 text-white/90 hover:text-white hover:border-white/40 transition-colors duration-300 gap-2"
           >
-            <MessageSquare size={20} className="mr-2 group-hover:rotate-6 transition-transform" /> Chat on WhatsApp
-          </a>
+            <Info size={18} className="text-blue-200" /> Contact the developer
+          </Link>
+          <p className="text-xs text-gray-400 mt-3">
+            Nobody owns this webstore. Use the contact page to reach the developer.
+          </p>
         </motion.div>
       </div>
 

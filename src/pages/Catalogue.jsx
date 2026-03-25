@@ -3,15 +3,28 @@ import { db } from "../firebase/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 import { Dialog } from "@headlessui/react";
 import { Helmet } from "react-helmet";
-import QR from "../assets/WhatsApp.png"; // Ensure this image exists
-import {
-  X,
-  Music,
-  ShoppingBag,
-  Info,
-  Phone,
-  MessageSquare,
-} from "lucide-react"; // Importing some icons for better UI
+import { X, ShoppingBag, Info, Mail, Instagram, Github } from "lucide-react"; // Importing some icons for better UI
+
+const developerContacts = [
+  {
+    label: "Email",
+    value: "devsahushakti785@gmail.com",
+    href: "mailto:devsahushakti785@gmail.com",
+    Icon: Mail,
+  },
+  {
+    label: "Instagram",
+    value: "@dev_sahu_785",
+    href: "https://instagram.com/dev_sahu_785",
+    Icon: Instagram,
+  },
+  {
+    label: "GitHub",
+    value: "DEVS-shakti",
+    href: "https://github.com/DEVS-shakti",
+    Icon: Github,
+  },
+];
 
 const NoInstrumentsSVG = () => (
   <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-lg shadow-inner">
@@ -182,7 +195,7 @@ function Catalogue() {
             <div className="flex justify-between items-center mb-4">
               <Dialog.Title className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                 <Info size={24} className="text-blue-500" />
-                Contact Seller
+                Contact the Developer
               </Dialog.Title>
               <button
                 onClick={closeDialog}
@@ -197,36 +210,30 @@ function Catalogue() {
               <span className="font-bold text-blue-600">
                 {selectedItem?.name}
               </span>
-              ? Get in touch with us to purchase this item.
+              ? Nobody owns this webstore â€” reach out to the developer to proceed.
             </p>
 
-            <div className="flex flex-col items-center justify-center space-y-4 my-6">
-              <img
-                src={QR}
-                alt="WhatsApp QR Code"
-                className="h-48 w-48 object-contain border border-gray-200 rounded-lg p-2 shadow-sm"
-              />
-              <div className="text-center">
-                <p className="font-semibold text-gray-800 flex items-center justify-center gap-2">
-                  <Phone size={16} className="text-green-500" />
-                  +91 8102467065
-                </p>
-                <p className="text-sm text-gray-500 mt-1 flex items-center justify-center gap-2">
-                  <MessageSquare size={16} className="text-green-500" />
-                  Scan the QR code or click the button below to WhatsApp us.
-                </p>
-              </div>
+            <div className="grid grid-cols-1 gap-3 my-4">
+              {developerContacts.map((contact) => (
+                <a
+                  key={contact.label}
+                  href={contact.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 rounded-xl border border-gray-100 p-3 hover:border-blue-500 transition-colors"
+                >
+                  <contact.Icon className="text-blue-600" size={20} />
+                  <span className="text-sm text-gray-700">
+                    {contact.label}: <strong>{contact.value}</strong>
+                  </span>
+                </a>
+              ))}
             </div>
 
-            <a
-              href={`https://wa.me/918102467065?text=Hello,%20I'm%20interested%20in%20the%20${selectedItem?.name}%20I%20saw%20on%20your%20website.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={closeDialog}
-              className="mt-4 block w-full text-center bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-colors duration-300"
-            >
-              Contact on WhatsApp
-            </a>
+            <p className="text-xs text-gray-500 flex items-center gap-2">
+              <Info size={14} className="text-blue-500" />
+              These are the only channels to reach the developer about purchases.
+            </p>
 
             <button
               onClick={closeDialog}
